@@ -25,5 +25,21 @@
   <%= @user.role %>
 </p>
 
+<p>
+  <strong>Offers:</strong>
+  <% @request.offers.each do |offer| %>
+    <tr>
+      <td><%= offer.message %></td>
+      <td><%= offer.user_id %></td>
+      <td><%= offer.request_id %></td>
+      <td><%= offer.accept %></td>
+      <td><%= link_to 'Show', request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

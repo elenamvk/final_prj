@@ -6,6 +6,8 @@ class OffersController < ApplicationController
   # GET /offers.json
   def index
     @offers = Offer.all
+    @offer = @request.offers(params[:request_id])
+
   end
 
   # GET /offers/1
@@ -31,10 +33,10 @@ class OffersController < ApplicationController
     respond_to do |format|
       if @offer.save
         format.html { redirect_to @request, notice: 'Offer was successfully created.' }
-        format.json { render :show, status: :created, location: @offer }
+        format.json { render :show, offered: :created, location: @offer }
       else
         format.html { render :new }
-        format.json { render json: @offer.errors, status: :unprocessable_entity }
+        format.json { render json: @offer.errors, offered: :unprocessable_entity }
       end
     end
   end
@@ -45,17 +47,17 @@ class OffersController < ApplicationController
     respond_to do |format|
       if @offer.update(offer_params)
         format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @offer }
+        format.json { render :show, offered: :ok, location: @offer }
       else
         format.html { render :edit }
-        format.json { render json: @offer.errors, status: :unprocessable_entity }
+        format.json { render json: @offer.errors, offered: :unprocessable_entity }
       end
     end
   end
 
   def accept
    @offer = Offer.find(params[:id])
-   @offer.status = true
+   @offer.offered = true
    @offer.save
    redirect_to @request
   end
@@ -81,6 +83,6 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:message, :host_id, :request_id, :status)
+      params.require(:offer).permit(:message, :host_id, :request_id, :offered)
     end
 end

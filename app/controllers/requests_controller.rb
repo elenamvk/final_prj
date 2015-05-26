@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     @requests = Request.all
+
   end
 
   # GET /requests/1
@@ -29,10 +30,10 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
+        format.json { render :show, accepted: :created, location: @request }
       else
         format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        format.json { render json: @request.errors, accepted: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +44,10 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
+        format.json { render :show, accepted: :ok, location: @request }
       else
         format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        format.json { render json: @request.errors, accepted: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +70,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:message, :artist_id, :start_date, :end_date, :n_of_people, :status)
+      params.require(:request).permit(:message, :artist_id, :start_date, :end_date, :n_of_people, :accepted)
     end
 end
