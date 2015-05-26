@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  user_id: 1
+  start_date: 2015-05-26
+  end_date: 2015-05-26
+  n_of_people: 1
+  accepted: false
+
+two:
+  message: MyText
+  user_id: 1
+  start_date: 2015-05-26
+  end_date: 2015-05-26
+  n_of_people: 1
+  accepted: false

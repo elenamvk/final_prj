@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @request.message %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @request.artist_id %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @request.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @request.end_date %>
+</p>
+
+<p>
+  <strong>N of people:</strong>
+  <%= @request.n_of_people %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @request.status %>
+</p>
+
+<p>
+  <strong>Offers:</strong>
+  <% @request.offers.each do |offer| %>
+    <tr>
+      <td><%= offer.message %></td>
+      <td><%= offer.host_id %></td>
+      <td><%= offer.request_id %></td>
+      <td><%= offer.status %></td>
+      <td><%= link_to 'Show', request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
+      <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>
