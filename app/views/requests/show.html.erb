@@ -40,7 +40,7 @@
       <td><%= offer.accept %></td>
       <td><%= link_to 'Show', request_offer_path(@request, offer) %></td>
       <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
-      <td><%= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
+      <td><%#= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
       <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
