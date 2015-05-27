@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create( name: 'Elena', role: 'admin' , verified: 'true')
-User.create(name: 'MK', role: 'artist', verified: 'true')
+User.create( name: 'Elena', role: 'admin' , verified: 'true', email:'el@el.com', password: "password")
+User.create(name: 'MK', role: 'artist', verified: 'true', email:'mk@mk.com', password: "password",)
 Request.create(message: 'Hello?', user_id: '1', start_date: '08-07-07', end_date: '09-07-07', n_of_people: '6', accepted: 'false' )
 Offer.create(message: 'Yes!', user_id: '2', request_id: '1', offered: 'false')
