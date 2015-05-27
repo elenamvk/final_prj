@@ -12,6 +12,8 @@ class RequestsController < ApplicationController
   # GET /requests/1
   # GET /requests/1.json
   def show
+    @request = Request.find(params[:id])
+    @offers = @request.offers
   end
 
   # GET /requests/new
@@ -26,7 +28,9 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new(request_params)
+    @request = current_user.requests.new(request_params)
+
+
 
     respond_to do |format|
       if @request.save
@@ -42,6 +46,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+    coffeeshop_facilities = params[:coffeeshop].delete(:facilities)
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }

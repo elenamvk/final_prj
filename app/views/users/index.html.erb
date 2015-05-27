@@ -16,16 +16,18 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.gravatar %></td>
-        <td><%= user.bio %></td>
-        <td><%= user.verified %></td>
-        <td><%= user.role %></td>
-        <td><%= link_to 'Show', user %></td>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.gravatar %></td>
+      <td><%= user.bio %></td>
+      <td><%= user.verified %></td>
+      <td><%= user.role %></td>
+      <td><%= link_to 'Show', user %></td>
+      <% if can? :edit, user %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% end %>
+    </tr>
     <% end %>
   </tbody>
 </table>

@@ -14,7 +14,9 @@ class OffersController < ApplicationController
   # GET /offers/1
   # GET /offers/1.json
   def show
+    @offer = @request.offers(params[:request_id])
   end
+
 
   # GET /offers/new
   def new
@@ -29,7 +31,7 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
-    @offer = @request.offers.new(offer_params)
+    @offer = current_user.request.offers.new(offer_params)
 
     respond_to do |format|
       if @offer.save
@@ -57,7 +59,7 @@ class OffersController < ApplicationController
   end
 
   def accept
-   @offer = Offer.find(params[:id])
+   @offer = current_user.offers.find(params[:id])
    @offer.offered = true
    @offer.save
    redirect_to @request
