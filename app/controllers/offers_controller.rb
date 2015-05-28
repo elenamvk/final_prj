@@ -31,7 +31,11 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
+
     @offer = current_user.request.offers.new(offer_params)
+
+
+
 
     respond_to do |format|
       if @offer.save
