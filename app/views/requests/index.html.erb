@@ -11,6 +11,7 @@
       <th>End date</th>
       <th>N of people</th>
       <th>Status</th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,9 +27,11 @@
         <td><%= request.accepted %></td>
         <td><%= link_to 'Show', request %></td>
         <% if can? :edit, request %>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%#= link_to "Create New Offer", accept_request_path(request), method: :put %><%= link_to "Create New Offer", new_request_offer_path(request_id: request.id) %></td>
+          <td><%= link_to 'Edit', edit_request_path(request) %></td>
+          <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if can? :create, @offer %>
+          <td><%= link_to "Create New Offer", new_request_offer_path(request_id: request.id) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -37,4 +40,6 @@
 
 <br>
 
-<%= link_to 'New Request', new_request_path %>
+<% if can? :create, Request %>
+  <%= link_to 'New Request', new_request_path %>
+<% end %>

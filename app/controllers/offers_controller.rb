@@ -6,15 +6,14 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @offers = Offer.all
-    @offer = @request.offers(params[:request_id])
+    @offers = @request.offers
 
   end
 
   # GET /offers/1
   # GET /offers/1.json
   def show
-    @offer = @request.offers(params[:request_id])
+    @offer = @request.offers.find(params[:id])
   end
 
 
@@ -31,10 +30,8 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
-
+    @request = Request.find(params[:id])
     @offer = current_user.request.offers.new(offer_params)
-
-
 
 
     respond_to do |format|

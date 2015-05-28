@@ -23,15 +23,14 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+
   end
 
   # POST /requests
   # POST /requests.json
   def create
     @request = current_user.requests.new(request_params)
-
-
-
+    #@offer = @request.offers.build(offer_params)
     respond_to do |format|
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
@@ -46,7 +45,6 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
-    coffeeshop_facilities = params[:coffeeshop].delete(:facilities)
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }

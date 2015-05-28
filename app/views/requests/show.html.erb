@@ -7,17 +7,17 @@
 
 <p>
   <strong>Start date:</strong>
-  <%#= @request.start_date %>
+  <%= @request.start_date %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%#= @request.end_date %>
+  <%= @request.end_date %>
 </p>
 
 <p>
   <strong>N of people:</strong>
-  <%#= @request.n_of_people %>
+  <%= @request.n_of_people %>
 </p>
 
 <p>
@@ -32,16 +32,16 @@
       <td><%= offer.message %></td>
       <td><%= offer.user_id %></td>
       <td><%= offer.request_id %></td>
-      <td><%#= offer.accept %></td>
+      <td><%#= offer.accepted %></td>
       <td><%= link_to 'Show', request_offer_path(@request, offer) %></td>
-      <% if can? :edit, offer %>
-      <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
-      <td><%#= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
-      <% end %>
-      <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %></td>
+      <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %></td>
     </tr>
   <% end %>
 </p>
+
+
+<%= link_to 'new offer', new_request_offer_path(@request) if can? :create, Offer %>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>
