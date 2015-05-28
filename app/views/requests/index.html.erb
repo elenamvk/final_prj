@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Requests</h1>
+<h1>Bands looking for a couch</h1>
 
 <table>
   <thead>
@@ -20,7 +20,7 @@
     <% @requests.each do |request| %>
       <tr>
         <td><%= request.message %></td>
-        <td><%= request.user_id %></td>
+        <td><%= request.user.try(:name) %></td>
         <td><%= request.start_date %></td>
         <td><%= request.end_date %></td>
         <td><%= request.n_of_people %></td>

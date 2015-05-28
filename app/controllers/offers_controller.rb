@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_request
-  before_action :set_offer, only: [ :edit, :update, :destroy]
+  before_action :set_offer, only: [ :edit, :update, :destroy, :accept]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /offers
@@ -27,12 +27,18 @@ class OffersController < ApplicationController
     @offer = @request.offers(offer_params)
   end
 
+  def accept
+    @offer.offered = true
+    redirect_to @request if @offer.save
+  end
+
   # POST /offers
   # POST /offers.json
   def create
-    @request = Request.find(params[:id])
-    @offer = current_user.request.offers.new(offer_params)
-
+    @offer = @request.offers.new(offer_params)
+    @offer.user = current_user
+    
+    #@offer = current_user.requests.find(params[:request_id]).offers.find(params[:offer_id]) 
 
     respond_to do |format|
       if @offer.save
@@ -57,13 +63,6 @@ class OffersController < ApplicationController
         format.json { render json: @offer.errors, offered: :unprocessable_entity }
       end
     end
-  end
-
-  def accept
-   @offer = current_user.offers.find(params[:id])
-   @offer.offered = true
-   @offer.save
-   redirect_to @request
   end
 
   # DELETE /offers/1

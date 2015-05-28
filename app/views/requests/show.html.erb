@@ -22,26 +22,29 @@
 
 <p>
   <strong>Status:</strong>
-  <%#= @request.accepted %>
+  <%= @request.accepted %>
 </p>
 
 <p>
   <strong>Offers:</strong>
+  <ul>
   <% @request.offers.each do |offer| %>
-    <tr>
-      <td><%= offer.message %></td>
-      <td><%= offer.user_id %></td>
-      <td><%= offer.request_id %></td>
-      <td><%#= offer.accepted %></td>
-      <td><%= link_to 'Show', request_offer_path(@request, offer) %></td>
-      <td><%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %></td>
-      <td><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %></td>
-    </tr>
+    <li>
+      <ul>
+        <li><%= offer.message %></li>
+        <li><%= offer.user_id %></li>
+        <li><%= offer.offered %></li>
+        <li><%= link_to 'Accept', accept_request_offer_path(@request, offer), method: :put %></li>
+        <li><%= link_to 'Show', request_offer_path(@request, offer) %></li>
+        <li><%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %></li>
+        <li><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %></li>
+      </ul>
+    </li>
   <% end %>
+  </ul>
 </p>
 
 
 <%= link_to 'new offer', new_request_offer_path(@request) if can? :create, Offer %>
-
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>

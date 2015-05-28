@@ -8,20 +8,29 @@
 </head>
 <body>
 
-  <%= link_to 'Requests', requests_path %> |
-  <%= link_to 'Users', users_path %> |
-  <% if current_user %>
-  logged in as: <%= link_to "#{current_user.name}", current_user %>  |
-  <% end %>
-  <% if user_signed_in? %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> |
-  <%= link_to('Edit Account', edit_user_registration_path(@user)) %> |
-  <% else %>
-  <%= link_to('Login', new_user_session_path) %> |
-  <%= link_to "Sign up", new_user_registration_path %> |
-  <% end %>
+  <header>
+    <nav>
+      <ul>
+        <li><h1>TourCouch</h1></li>
+        <% if can? :create, Request %>
+          <li><%= link_to 'Find a counch', new_request_path %></li>
+        <% end %>
+        <li><%= link_to 'Host a band', requests_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "#{current_user.name}", current_user %></li>
+          <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+        <% else %>
+          <li><%= link_to('Login', new_user_session_path) %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
 
-  <%= yield %>
-
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>
