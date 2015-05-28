@@ -28,19 +28,21 @@
 <p>
   <strong>Offers:</strong>
   <ul>
-  <% @request.offers.each do |offer| %>
+    <% @request.offers.each do |offer| %>
     <li>
       <ul>
         <li><%= offer.message %></li>
         <li><%= offer.user_id %></li>
         <li><%= offer.offered %></li>
-        <li><%= link_to 'Accept', accept_request_offer_path(@request, offer), method: :put %></li>
+          <% if can? :create, Request %>
+            <li><%= link_to 'Accept', accept_request_offer_path(@request, offer), method: :put%></li>
+          <%end%>
         <li><%= link_to 'Show', request_offer_path(@request, offer) %></li>
         <li><%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %></li>
         <li><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %></li>
       </ul>
     </li>
-  <% end %>
+    <% end %>
   </ul>
 </p>
 
@@ -48,3 +50,12 @@
 <%= link_to 'new offer', new_request_offer_path(@request) if can? :create, Offer %>
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>
+
+
+
+
+
+
+
+
+

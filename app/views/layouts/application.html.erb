@@ -8,26 +8,73 @@
 </head>
 <body>
 
-  <header>
-    <nav>
-      <ul>
-        <li><h1>TourCouch</h1></li>
-        <% if can? :create, Request %>
-          <li><%= link_to 'Find a counch', new_request_path %></li>
-        <% end %>
-        <li><%= link_to 'Host a band', requests_path %></li>
-        <li><%= link_to 'Users', users_path %></li>
-        <% if user_signed_in? %>
-          <li><%= link_to "#{current_user.name}", current_user %></li>
-          <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
-          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-        <% else %>
-          <li><%= link_to('Login', new_user_session_path) %></li>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+
+  <header class="navigation" role="banner">
+    <div class="navigation-wrapper">
+      <a href="javascript:void(0)" class="logo">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
+      </a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link">        
+            <% if can? :create, Request %>
+            <%= link_to 'Find a counch', new_request_path %>
+            <% end %>
+          </li>
+          <li class="nav-link">
+            
+            <%= link_to 'Host a band', requests_path %>
+            
+          </li>
+          <li class="nav-link">
+            
+            <%= link_to 'Users', users_path %>
+            
+          </li>
+
+          <% if user_signed_in? %>
+          <li class="nav-link more">
+            
+            <%= link_to "#{current_user.name}", current_user %>
+            
+            <ul class="submenu">
+              <li>
+                <%= link_to('Edit Account', edit_user_registration_path(@user)) %>
+              </li>
+              <li>
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+              </li>
+            </ul>
+            <% else %>
+            <li class="nav-link more">
+
+              <%= link_to('Login', new_user_session_path) %>
+
+            </li>
+            <li class="nav-link more">
+
+              <%= link_to "Sign up", new_user_registration_path %>
+
+            </li>
+          </li>
+          <% end %>
+        </ul>
+      </nav>
+<!--       <div class="navigation-tools">
+        <div class="search-bar">
+          <form role="search">
+            <input type="search" placeholder="Enter Search" />
+            <button type="submit">
+              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+            </button>
+          </form>
+        </div>
+        <a href="javascript:void(0)" class="sign-up">Sign Up</a>
+      </div> -->
+    </div>
   </header>
+
 
   <main>
     <%= yield %>

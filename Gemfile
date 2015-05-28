@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+
+gem 'bourbon', '4.2.2'
+gem 'neat', '1.7.2'
+gem 'bitters', '1.0.0'
+gem 'refills', '0.1.0'
+
 gem 'cancancan', '~> 1.10'
 
 gem "devise"

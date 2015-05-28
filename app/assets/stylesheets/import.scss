@@ -1,0 +1,18 @@
+@import "bourbon";
+@import "base/base";
+@import "neat";
+@import "navigation";
+@import "delete";
+@import "alerts";
+
+body {
+   max-width: 100%;
+   margin: auto;
+   font-family: $helvetica;
+}
+
+main {
+   max-width: 700px;
+   height: relative;
+   margin: auto;
+}
