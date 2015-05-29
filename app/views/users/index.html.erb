@@ -11,9 +11,8 @@
 <table>
   <thead>
     <tr>
+     <th>Gravatar</th>
       <th>Name</th>
-      <th>Gravatar</th>
-      <th>Bio</th>
       <th>Verified</th>
       <th>Role</th>
     </tr>
@@ -22,9 +21,8 @@
   <tbody>
     <% @users.each do |user| %>
     <tr>
+      <td><%= image_tag user.gravatar %></td>
       <td><%= link_to user.name, user %></td>
-      <td><%= user.gravatar %></td>
-      <td><%= user.bio %></td>
       <td><%= user.verified %></td>
       <td><%= user.role %></td>
       <% if can? :edit, user %>

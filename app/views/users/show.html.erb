@@ -1,46 +1,70 @@
 <p id="success"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
 
-<p>
-  <strong>Gravatar:</strong>
-  <%= @user.gravatar %>
-</p>
+<ul class="bullets">
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-1">
+      <img src="{#@user.gravatar}" alt="">
+    </div>
+    <div class="bullet-content">
 
-<p>
-  <strong>Bio:</strong>
-  <%= @user.bio %>
-</p>
+      <h2> <%= @user.name %> </h2>
 
-<p>
-  <strong>Verified:</strong>
-  <%= @user.verified %>
-</p>
+      <p>
+        <strong>Bio:</strong>
+        <%= @user.bio %>
+      </p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
+      <p>
+        <strong>Verified:</strong>
+        <%= @user.verified %>
+      </p>
 
-<p>
-  <strong>Offers:</strong>
-  <%# @request.offers.each do |offer| %>
-  <tr>
-    <td><%#= offer.message %></td>
-    <td><%#= offer.user_id %></td>
-    <td><%#= offer.request_id %></td>
-    <td><%#= offer.accept %></td>
-    <td><%#= link_to 'Show', request_offer_path(@request, offer) %></td>
-    <td><%#= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
-    <td><%#= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
-    <td><%#= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-  <%# end %>
-</p>
-<% if can? :edit, @user %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<%= link_to 'Back', users_path %>
+      <p>
+        <strong>Role:</strong>
+        <%= @user.role %>
+      </p>
+
+      <p>
+        <strong>Offers:</strong>
+        <%# @request.offers.each do |offer| %>
+        <tr>
+          <td><%#= offer.message %></td>
+          <td><%#= offer.user_id %></td>
+          <td><%#= offer.request_id %></td>
+          <td><%#= offer.accept %></td>
+          <td><%#= link_to 'Show', request_offer_path(@request, offer) %></td>
+          <td><%#= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
+          <td><%#= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
+          <td><%#= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <%# end %>
+      </p>
+      <p>
+      </p>
+    </div>
+  </li>  
+</ul>
+
+
+<div class="button-group">
+  <% if can? :edit, @user %>
+  <label>
+    <input type="radio" name="button-group" value="other-item">
+    <span class="button-group-item">
+      <%= link_to 'Edit', edit_user_path(@user) %>
+    </span>
+  </label>
+  <%end%>
+  <label>
+    <input type="radio" name="button-group" value="other-item">
+    <span class="button-group-item">
+      <%= link_to 'Back', users_path %>
+    </span>
+  </label>
+</div>
+
+<br>
+<br>
+<br>
+<br>

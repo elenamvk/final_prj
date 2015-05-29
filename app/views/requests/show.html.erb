@@ -8,8 +8,7 @@
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-icon bullet-icon-1">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
-      " alt="">
+      <img src="{#@user.gravatar}" alt="">
     </div>
     <div class="bullet-content">
 
@@ -49,8 +48,7 @@
         <ul class="bullets">
           <li class="bullet">
             <div class="bullet-icon bullet-icon-1">
-              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
-              " alt="">
+              <img src="{#@user.gravatar}" alt="">
             </div>
             <div class="bullet-content">
               <h2><%= offer.user.name %>, <%= link_to 'Accept?', accept_request_offer_path(@request, offer), method: :put%></h2>
@@ -98,6 +96,11 @@
   </label>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
