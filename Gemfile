@@ -9,6 +9,12 @@ gem 'refills', '0.1.0'
 gem 'cancancan', '~> 1.10'
 
 gem "devise"
+
+gem 'carrierwave', '0.10.0'
+gem 'rmagick'
+
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
