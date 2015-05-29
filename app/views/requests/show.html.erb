@@ -1,58 +1,102 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Message:</strong>
-  <%= @request.try("message") %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @request.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @request.end_date %>
-</p>
-
-<p>
-  <strong>N of people:</strong>
-  <%= @request.n_of_people %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @request.accepted %>
-</p>
-
-<p>
-  <strong>Offers:</strong>
-  <ul>
-    <% @request.offers.each do |offer| %>
-    <li>
-      <ul>
-        <li><%= offer.message %></li>
-        <li><%= offer.user_id %></li>
-        <li><%= offer.offered %></li>
-          <% if can? :create, Request %>
-            <li><%= link_to 'Accept', accept_request_offer_path(@request, offer), method: :put%></li>
-          <%end%>
-        <li><%= link_to 'Show', request_offer_path(@request, offer) %></li>
-        <li><%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %></li>
-        <li><%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %></li>
-      </ul>
-    </li>
-    <% end %>
-  </ul>
-</p>
+<br>
+<br>
 
 
-<%= link_to 'new offer', new_request_offer_path(@request) if can? :create, Offer %>
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<p id="success"><%= notice %></p>
+
+
+<ul class="bullets">
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-1">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
+      " alt="">
+    </div>
+    <div class="bullet-content">
+
+    <h2> <%= @request.user.name %> is looking for a couch: </h2>
+
+      <p>
+        <strong>Message:</strong>
+        <%= @request.try("message") %>
+      </p>
+
+      <p>
+        <strong>Start date:</strong>
+        <%= time_tag @request.start_date %>
+      </p>
+
+      <p>
+        <strong>End date:</strong>
+        <%= time_tag @request.end_date %>
+      </p>
+
+      <p>
+        <strong>N of people:</strong>
+        <%= @request.n_of_people %>
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <%= @request.accepted %>
+      </p>
 
 
 
+      <p>
+        <h2>Offers:</h2>
+
+        <% @request.offers.each do |offer| %>
+        <ul class="bullets">
+          <li class="bullet">
+            <div class="bullet-icon bullet-icon-1">
+              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
+              " alt="">
+            </div>
+            <div class="bullet-content">
+              <h2><%= offer.user.name %>, <%= link_to 'Accept?', accept_request_offer_path(@request, offer), method: :put%></h2>
+              <p><%= offer.message %></p>
+              <p><%#= offer.offered %></p>
+              <p>Offer? <%= check_box_tag "offer.offered", offer.id%></p>
+              <% if can? :create, Request %>
+              <p><%#= link_to 'Accept?', accept_request_offer_path(@request, offer), method: :put%></p>
+              <%end%>
+              <p>
+                <%= link_to 'Show', request_offer_path(@request, offer) %> 
+                <%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %>
+                <%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %>
+              </p>
+            </div>
+          </li>  
+        </ul>
+        <% end %>
+      </p>
+    </div>
+  </li>  
+</ul>
+
+
+<div class="button-group">
+  <% if can? :create, Offer %>
+  <label>
+    <input type="radio" name="button-group" value="other-item">
+    <span class="button-group-item">
+      <%= link_to 'Make a new offer', new_request_offer_path(@request) %>
+    </span>
+  </label>
+  <%end%>
+  <label>
+    <input type="radio" name="button-group" value="other-item">
+    <span class="button-group-item">
+      <%= link_to 'Edit the request', edit_request_path(@request) %>
+    </span>
+  </label>
+  <label>
+    <input type="radio" name="button-group" value="other-item">
+    <span class="button-group-item">
+      <%= link_to 'Back to index', requests_path %>
+    </span>
+  </label>
+</div>
 
 
 

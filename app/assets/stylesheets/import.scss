@@ -1,9 +1,14 @@
 @import "bourbon";
 @import "base/base";
 @import "neat";
+@import "alerts";
 @import "navigation";
 @import "delete";
-@import "alerts";
+@import "footer";
+@import "buttons";
+@import "offers_layout";
+@import "button_group";
+
 
 body {
    max-width: 100%;
@@ -12,7 +17,7 @@ body {
 }
 
 main {
-   max-width: 700px;
+   max-width: 800px;
    height: relative;
    margin: auto;
 }

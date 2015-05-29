@@ -1,0 +1,12 @@
+button {
+  @include button(flat, $action-color);
+  display: inline-block;
+  color: white;
+  font-size: .7em;
+  line-height: $base-line-height;
+  margin-bottom: .3em;
+  margin-right: 0.5em;
+  outline: none;
+  padding: .3em 1em;
+  width: 20%;
+}

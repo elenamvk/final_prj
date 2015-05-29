@@ -28,14 +28,14 @@ $success-color: #e6efc2 !default;
   @include flash($alert-color);
 }
 
-.error_explanation {
+#error_explanation {
   @include flash($error-color);
 }
 
-.notice {
+#notice {
   @include flash($notice-color);
 }
 
-.success {
+#success {
   @include flash($success-color);
 }

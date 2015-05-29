@@ -1,6 +1,23 @@
-<p id="notice"><%= notice %></p>
+<p id="success"><%= notice %></p>
 
-<h1>Bands looking for a couch</h1>
+
+<ul class="bullets">
+  <li class="bullet">
+    <div class="bullet-content">
+      <h2>Bands looking for a couch</h2>
+      <% if can? :create, Request %>
+      <div class="button-group">
+        <label>
+          <input type="radio" name="button-group" value="other-item">
+          <span class="button-group-item">
+            <%= link_to 'New Request', new_request_path %>
+          </span>  
+        </label>  
+      </div>
+      <%end%>
+    </div>
+  </li>  
+</ul>
 
 <table>
   <thead>
@@ -11,35 +28,26 @@
       <th>End date</th>
       <th>N of people</th>
       <th>Status</th>
-      <th></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @requests.each do |request| %>
-      <tr>
-        <td><%= request.message %></td>
-        <td><%= request.user.try(:name) %></td>
-        <td><%= request.start_date %></td>
-        <td><%= request.end_date %></td>
-        <td><%= request.n_of_people %></td>
-        <td><%= request.accepted %></td>
-        <td><%= link_to 'Show', request %></td>
-        <% if can? :edit, request %>
-          <td><%= link_to 'Edit', edit_request_path(request) %></td>
-          <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if can? :create, @offer %>
-          <td><%= link_to "Create New Offer", new_request_offer_path(request_id: request.id) %></td>
-        <% end %>
-      </tr>
+    <tr>
+      <td><%= link_to request.message, request %></a></td>
+      <td><%= request.user.try(:name) %></td>
+      <td><%= time_tag request.start_date %></td>
+      <td><%= time_tag request.end_date %></td>
+      <td><%= request.n_of_people %></td>
+      <td><%= request.accepted %></td>
+      <% if can? :edit, request %>
+        <td><%= link_to 'Edit', edit_request_path(request) %> | <%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<% if can? :create, Request %>
-  <%= link_to 'New Request', new_request_path %>
-<% end %>
+
