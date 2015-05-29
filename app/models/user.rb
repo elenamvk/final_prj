@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
     validates :role, inclusion: { in: %w(band host admin),
       message: "you have not chosen a valid role" }, presence: true
 
-  
+  mount_uploader :users_gravatar, UsersGravatarUploader
 end

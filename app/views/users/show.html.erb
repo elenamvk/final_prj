@@ -4,7 +4,7 @@
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-icon bullet-icon-1">
-      <img src="{#@user.gravatar}" alt="">
+      <img src="{#@user.users_gravatar.thumb.url}" alt="">
     </div>
     <div class="bullet-content">
 
@@ -25,7 +25,7 @@
         <%= @user.role %>
       </p>
 
-      <p>
+<!--       <p>
         <strong>Offers:</strong>
         <%# @request.offers.each do |offer| %>
         <tr>
@@ -39,7 +39,7 @@
           <td><%#= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <%# end %>
-      </p>
+      </p> -->
       <p>
       </p>
     </div>
