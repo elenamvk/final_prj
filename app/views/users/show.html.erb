@@ -40,9 +40,9 @@
         </tr>
         <%# end %>
       </p> -->
-      </p>
-    </div>
-  </li>  
+    </p>
+  </div>
+</li>  
 </ul>
 
 <div class="button-group">
@@ -56,20 +56,21 @@
   <%end%>
 </div>
 
- <br>
- <br>
- <br>
- <br>
+<br>
+<br>
+<br>
+<br>
 
- <h2>Feedback from previous hosts:</h2>
-  <%= render @comments if can? :create, Comment %>
+<% if can? :create, Comment %>
+<h2>Feedback from previous hosts:</h2>
+<%= render @comments %>
 
-  <br>
-  <br>
+<br>
 
+<%= render partial: 'comments/form', locals: { commentable: @user }%>
 
-  <%= render partial: 'comments/form', locals: { commentable: @user } if can? :create, Comment %>
-  
+<% end %>
+
 
 <br>
 <br>

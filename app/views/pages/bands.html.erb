@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+     <th>Gravatar</th>
+     <th>Name</th>
+     <th>Verified</th>
+     <th>Role</th>
+   </tr>
+ </thead>
+ <tbody>
+  <% @users.each do |user| %>
+  <% if user.role == "band" %>
+  <tr>
+    <td><%= image_tag user.users_gravatar.thumb.url %></td>
+    <td><%= link_to user.name, user %></td>
+    <td><%= user.verified %></td>
+    <td><%= user.role %></td>
+    <% if can? :edit, user %>
+    <td><%= link_to('Edit Account', edit_user_registration_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+  <% end %>
+  <% end %>
+</tbody>
+</table>

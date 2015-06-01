@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root"requests#index"
+  root"pages#home"
   resources :users
   resources :requests do 
     resources :offers do
@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create, :destroy]
-  
-  get 'user/band/:id' => 'user#band', :as => :band_user
 
-  #resources :offers
+  get '/home' => 'pages#home'
+  get '/about' => 'pages#about'
+  get '/contact' => 'pages#contact'
+  get '/bands' => 'pages#bands'
+  get '/hosts' => 'pages#hosts'
   
-  # match '/offers/propose/:id' => 'offers#propose', as: 'propose_offer', via: :put 
-  # match '/offers/accept/:id' => 'offers#accept', as: 'accept_request', via: :put
 end
