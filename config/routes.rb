@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :destroy]
   
+  get 'user/band/:id' => 'user#band', :as => :band_user
+
   #resources :offers
   
   # match '/offers/propose/:id' => 'offers#propose', as: 'propose_offer', via: :put 
