@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :comments, only: [:create, :destroy]
+  
   #resources :offers
   
   # match '/offers/propose/:id' => 'offers#propose', as: 'propose_offer', via: :put 

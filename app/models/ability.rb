@@ -9,11 +9,13 @@ class Ability
        elsif user.role == "host"
          can :manage, Offer, user_id: user.id
          can :edit, Offer
+         can :manage, Comment, user_id: user.id
          cannot :manage, Request
        elsif user.role == "band"
          can :manage, Request, user_id: user.id
          can :edit, Request
          cannot :manage, Offer
+         cannot :read, Comment
        else
          can    :read, :all
        end

@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
       message: "you have not chosen a valid role" }, presence: true
 
   mount_uploader :users_gravatar, UsersGravatarUploader
+
+  acts_as_commentable
 end

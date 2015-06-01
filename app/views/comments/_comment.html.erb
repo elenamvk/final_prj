@@ -1,0 +1,11 @@
+<table>
+  <td class="formcomment">
+    <h1><%= comment.user.try(:name) %><%= image_tag comment.user.users_gravatar.thumb.url %></h1>
+    
+    <p><%= comment.comment %></p>
+      <% if can? :edit, @comment %>  
+      <%#= link_to 'Delete Comment', comment_path(comment, commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id), method: :delete, data: { confirm: 'Are you sure?' }%>
+      <%end%>
+
+      </td>
+    </table>
