@@ -4,7 +4,7 @@
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-icon bullet-icon-1">
-      <img src="{#@user.users_gravatar.thumb.url}" alt="">
+      <%= image_tag @user.users_gravatar.thumb.url %>
     </div>
     <div class="bullet-content">
 
@@ -40,7 +40,6 @@
         </tr>
         <%# end %>
       </p> -->
-      <p>
       </p>
     </div>
   </li>  
@@ -55,23 +54,22 @@
     </span>
   </label>
   <%end%>
-  <label>
-    <input type="radio" name="button-group" value="other-item">
-    <span class="button-group-item">
-      <%= link_to 'Back', users_path %>
-    </span>
-  </label>
 </div>
 
- 
+ <br>
+ <br>
+ <br>
+ <br>
 
+ <h2>Feedback from previous hosts:</h2>
   <%= render @comments if can? :create, Comment %>
+
+  <br>
+  <br>
 
 
   <%= render partial: 'comments/form', locals: { commentable: @user } if can? :create, Comment %>
   
-
-
 
 <br>
 <br>

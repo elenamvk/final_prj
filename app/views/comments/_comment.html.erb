@@ -1,11 +1,21 @@
-<table>
-  <td class="formcomment">
-    <h1><%= comment.user.try(:name) %><%= image_tag comment.user.users_gravatar.thumb.url %></h1>
-    
-    <p><%= comment.comment %></p>
-      <% if can? :edit, @comment %>  
-      <%#= link_to 'Delete Comment', comment_path(comment, commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id), method: :delete, data: { confirm: 'Are you sure?' }%>
-      <%end%>
-
-      </td>
-    </table>
+<ul class="bullets">
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-1">
+      <%= image_tag comment.user.users_gravatar.thumb.url %>
+    </div>
+    <div class="bullet-content">
+      <h2><%= comment.user.try(:name) %></h2>
+      <p> <%= comment.comment %></p>
+      <% if can? :delete, @comment %>
+      <div class="button-group">
+        <label>
+          <input type="radio" name="button-group" value="other-item">
+          <span class="button-group-item">
+            <%#= link_to 'Delete Comment', comment_path(comment, commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id), method: :delete, data: { confirm: 'Are you sure?' }%>
+          </span>
+        </label>
+      </div>
+      <% end %>
+    </div>
+  </li>  
+</ul>
