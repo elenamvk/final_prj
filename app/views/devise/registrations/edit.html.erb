@@ -48,6 +48,12 @@
     <%= f.text_field :verified %>
   </div>
 
+  <% if can? :edit, @user %>
+  <div class="field">
+    <%= f.label :verified %><br>
+    <%= f.text_field :verified %>
+  </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Update" %>
