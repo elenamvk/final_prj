@@ -1,27 +1,36 @@
 <%= form_for([@request, @offer]) do |f| %>
-  <% if @offer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+<% if @offer.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
 
-      <ul>
-      <% @offer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @offer.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <%= @request.message %><br>
+<%= @request.message %><br>
+<br>
 
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_field :message %>
-  </div>
-  <div class="field">
-    <%= f.label :offered %><br>
-    <%= f.check_box :offered %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field">
+  <%= f.label :message %><br>
+  <%= f.text_field :message %>
+</div>
+
+
+<div class="field">
+  <nav class="inline">
+    <ul>
+      <li><%= f.label(:offered, "Yes, I'm offering my couch")%></li>
+      <li><%= f.radio_button(:offered, "true") %></li>
+      <li><%= f.label(:offered, "No, I'm not offering my couch") %></li>
+      <li><%= f.radio_button(:offered, "false") %></li>
+    </ul>
+  </nav>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

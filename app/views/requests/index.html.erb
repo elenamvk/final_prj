@@ -1,6 +1,3 @@
-<p id="success"><%= notice %></p>
-
-
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-content">
@@ -34,7 +31,7 @@
   <tbody>
     <% @requests.each do |request| %>
     <tr>
-      <td><%= link_to request.message, request %></a></td>
+      <td><%= link_to request.message.truncate_words(10), request %></a></td>
       <td><%= request.user.try(:name) %></td>
       <td><%= time_tag request.start_date %></td>
       <td><%= time_tag request.end_date %></td>

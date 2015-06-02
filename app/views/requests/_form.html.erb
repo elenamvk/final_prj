@@ -1,33 +1,45 @@
 <%= form_for(@request) do |f| %>
-  <% if @request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+<% if @request.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
 
-      <ul>
-      <% @request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_area :message %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :n_of_people %><br>
-    <%= f.number_field :n_of_people %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <ul>
+    <% @request.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+
+<div class="field">
+  <%= f.label :message, "Write your request here:" %>
+  Be sure to specify the city you'll be in and any other additional information!
+  <%= f.text_area :message%>
+</div>
+<div class="field" id="date_select">
+  <%= f.label :start_date, "From..." %>
+  <%= f.date_select :start_date%>
+</div>
+<div class="field" id="date_select" >
+  <%= f.label :end_date, "...To" %>
+  <%= f.date_select :end_date %>
+</div>
+<div class="field">
+  <%= f.label :n_of_people, "How many people do you need a couch for?" %>
+  <%= f.number_field :n_of_people %>
+</div>
+<div class="field">
+  <nav class="inline">
+    <li><%= label_tag(:accepted, "Yes, this request has been answred") %></li>
+    <li><%= f.radio_button(:accepted, "true") %></li>
+    <li><%= label_tag(:accepted, "No, this request has not been answred") %></li>
+    <li><%= f.radio_button(:accepted, "false") %></li>
+  </nav>
+</div>
+<br>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
+<br>
+<br>

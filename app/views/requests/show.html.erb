@@ -2,7 +2,6 @@
 <br>
 
 
-<p id="success"><%= notice %></p>
 
 
 <ul class="bullets">
@@ -51,15 +50,11 @@
               <img src="{#@user.users_gravatar.thumb.url}" alt="">
             </div>
             <div class="bullet-content">
-              <h2><%= offer.user.name %>, <%= link_to 'Accept?', accept_request_offer_path(@request, offer), method: :put%></h2>
+              <h2><%= offer.user.name %><%= link_to ', Accept?', accept_request_offer_path(@request, offer), method: :put if can? :create, Request %></h2>
               <p><%= offer.message %></p>
-              <p><%#= offer.offered %></p>
-              <p>Offer? <%= check_box_tag "offer.offered", offer.id%></p>
               <% if can? :create, Request %>
-              <p><%#= link_to 'Accept?', accept_request_offer_path(@request, offer), method: :put%></p>
               <%end%>
               <p>
-                <%= link_to 'Show', request_offer_path(@request, offer) %> 
                 <%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %>
                 <%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %>
               </p>

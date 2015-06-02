@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20150601084340) do
     t.text     "message"
     t.integer  "user_id"
     t.integer  "request_id"
-    t.boolean  "offered"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "offered",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "requests", force: :cascade do |t|
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20150601084340) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "n_of_people"
-    t.boolean  "accepted"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "accepted",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|

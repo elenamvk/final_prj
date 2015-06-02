@@ -4,7 +4,7 @@ class CreateOffers < ActiveRecord::Migration
       t.text :message
       t.integer :user_id
       t.integer :request_id
-      t.boolean :offered
+      t.boolean :offered, default: false
 
       t.timestamps null: false
     end

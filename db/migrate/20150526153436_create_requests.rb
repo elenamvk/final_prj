@@ -6,7 +6,7 @@ class CreateRequests < ActiveRecord::Migration
       t.date :start_date
       t.date :end_date
       t.integer :n_of_people
-      t.boolean :accepted
+      t.boolean :accepted, default: false
 
       t.timestamps null: false
     end

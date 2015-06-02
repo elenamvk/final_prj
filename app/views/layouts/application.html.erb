@@ -33,7 +33,7 @@
             <%= link_to 'Hosts', hosts_path %>
           </li>
           <li class="nav-link">
-            <%= link_to 'Bands', bands_path if can? :read, Offer %>
+            <%= link_to 'Bands', bands_path if can? :create, Offer %>
           </li>
           <% if user_signed_in? %>
           <li class="nav-link more">
@@ -73,6 +73,9 @@
 
 
   <main>
+    <% if notice %>
+      <p id="success"><%= notice %></p>
+    <% end %>
     <%= yield %>
   </main>
 

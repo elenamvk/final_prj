@@ -1,46 +1,8 @@
-<td id="deletecomment">
-  <%= link_to 'Delete Comment', comment_path(comment, commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-</td>
+i create the offer, the offer can OR not call the true inside the method offered
 
+if it call true then the request is done, and the offer cannot be deleted
 
+if it calls false then the request is still pending, and the offer can be deleted
 
-i can... 
-
-select all the users with role == band in controller
-
-<% if @users.role == "band" %>
-  <% @users.each do |user| %>
-    <%= @user.name %>
-  <% end %>
-<% end %>
-
-then create a new page in which to display them
-
-
-then lambda the thing in the routes 
-
-root :to => 'project_managers#index', :constraints => lambda { |request| request.env['warden'].user.role == 'project_manager' }
-root :to => 'clients#index'
-
-OR depending on the role redirect them to the new page
-
-# passthrough_controller.rb
-class PassthroughController < ApplicationController
-  def index
-    path = case current_user.role
-      when 'band'
-        requests_path
-      when 'host'
-        user_band_path
-      else
-        # If you want to raise an exception or have a default root for users without roles
-    end
-
-    redirect_to path     
-  end
-end
-
-# routes.rb
-root :to => 'passthrough#index'
-
+at the moment the method gets called whenever somebody makes an offer at all...
 

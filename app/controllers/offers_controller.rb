@@ -27,10 +27,12 @@ class OffersController < ApplicationController
     @offer = @request.offers(offer_params)
   end
 
-  def accept
-    @offer.offered = true
-    redirect_to @request if @offer.save
-  end
+
+
+def accept
+  @offer.offered = true
+  redirect_to @request if @offer.save
+end
 
   # POST /offers
   # POST /offers.json
@@ -70,22 +72,22 @@ class OffersController < ApplicationController
   def destroy
     @offer.destroy
     respond_to do |format|
-      format.html { redirect_to offers_url, notice: 'Offer was successfully destroyed.' }
+      format.html { redirect_to requests_url, notice: 'Offer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_request
-      @request = Request.find(params[:request_id])
-    end
+  def set_request
+    @request = Request.find(params[:request_id])
+  end
 
-    def set_offer
-      @offer = Offer.find(params[:id])
-    end
+  def set_offer
+    @offer = Offer.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
       params.require(:offer).permit(:message, :host_id, :request_id, :offered)
     end
-end
+  end
