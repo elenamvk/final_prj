@@ -31,18 +31,23 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :gravatar %><br>
-    <%= f.text_field :gravatar %>
-  </div>
+
   <div class="field">
     <%= f.label :users_gravatar %><br>
     <%= f.file_field :users_gravatar %>
   </div>
+
   <div class="field">
     <%= f.label :bio %><br>
     <%= f.text_field :bio %>
   </div>
+
+  <% if can? :manage, :all %>
+  <div class="field">
+      <%= f.label :role %><br>
+      <%= f.select :role, ["band", "host", "admin"] %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Update" %>

@@ -8,7 +8,9 @@ gem 'refills', '0.1.0'
 
 gem 'cancancan', '~> 1.10'
 
-gem "devise"
+gem 'devise', '3.4.1'
+gem 'omniauth', '1.2.2'
+gem 'omniauth-facebook', '2.0.1'
 
 gem 'carrierwave', '0.10.0'
 gem 'rmagick'
