@@ -11,6 +11,7 @@
 </div>
 <% end %>
 
+<h1> You are answering <%= @request.user.name %>'s request:</h1>
 <%= @request.message %><br>
 <br>
 
@@ -23,10 +24,10 @@
 <div class="field">
   <nav class="inline">
     <ul>
-      <li><%= f.label(:offered, "Yes, I'm offering my couch")%></li>
-      <li><%= f.radio_button(:offered, "true") %></li>
-      <li><%= f.label(:offered, "No, I'm not offering my couch") %></li>
-      <li><%= f.radio_button(:offered, "false") %></li>
+      <li><%= f.label :offered, "Yes, I'm offering my couch" %></li>
+      <li><%= f.radio_button :offered, true %></li>
+      <li><%= f.label :offered, "No, I'm not offering my couch" %></li>
+      <li><%= f.radio_button :offered, false  %></li>
     </ul>
   </nav>
 </div>

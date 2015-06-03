@@ -6,10 +6,14 @@ class Offer < ActiveRecord::Base
 
   after_save :accept_request
 
+  validates_inclusion_of :offered, :in => [true, false]
+
   def accept_request
     if self.offered = true
       self.request.accepted = true 
       self.request.save
     end
   end
+
+
 end
