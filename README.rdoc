@@ -1,8 +1,18 @@
-i create the offer, the offer can OR not call the true inside the method offered
-
-if it call true then the request is done, and the offer cannot be deleted
-
-if it calls false then the request is still pending, and the offer can be deleted
-
-at the moment the method gets called whenever somebody makes an offer at all...
-
+<div class="cards">
+<% @users.each do |user| %>
+  <div class="card">
+    <div class="card-image">
+      <%= image_tag user.users_gravatar.thumb.url %>
+    </div>
+    <div class="card-header">
+      <%= link_to user.name, user %>
+      <% if can? :edit, user %>
+      , <%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+    <div class="card-copy">
+      <p><%= link_to user.try(:bio).truncate_words(15), user %></p>
+    </div>
+  </div>
+  <% end %>
+</div>

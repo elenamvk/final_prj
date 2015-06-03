@@ -11,33 +11,30 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :message, "Write your request here:" %>
-  Be sure to specify the city you'll be in and any other additional information!
-  <%= f.text_area :message%>
-</div>
 <div class="field" id="date_select">
-  <%= f.label :start_date, "From..." %>
+  <%= f.label :start_date, "From...:" %>
   <%= f.date_select :start_date%>
 </div>
 <div class="field" id="date_select" >
-  <%= f.label :end_date, "...To" %>
+  <%= f.label :end_date, "...To:" %>
   <%= f.date_select :end_date %>
 </div>
-<div class="field">
-  <%= f.label :n_of_people, "How many people do you need a couch for?" %>
+<div class="field" id="date_select">
+  <%= f.label :n_of_people, "For how many people?" %>
   <%= f.number_field :n_of_people %>
 </div>
-<div class="field">
-  <nav class="inline">
-    <li><%= label_tag(:accepted, "Yes, this request has been answred") %></li>
-    <li><%= f.radio_button(:accepted, "true") %></li>
-    <li><%= label_tag(:accepted, "No, this request has not been answred") %></li>
-    <li><%= f.radio_button(:accepted, "false") %></li>
-  </nav>
+ <div class="field">
+   Write your request here:
+   <%= f.text_area :message, placeholder: "Be sure to specify the city you'll be in and any other additional information!"%>
+ </div>
+<div class="stats">
+    <ul>
+      <li> Yes, this request has been answred <%= f.radio_button :accepted, true %></li>
+      <li> No, this request has not been answred<%= f.radio_button :accepted, false  %></li>
+    </ul>
 </div>
 <br>
-<div class="actions">
+<div class="actions-center">
   <%= f.submit %>
 </div>
 <% end %>

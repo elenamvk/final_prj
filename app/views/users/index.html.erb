@@ -1,33 +1,25 @@
 <ul class="bullets">
-  <li class="bullet">
-    <div class="bullet-content">
-      <h2>List of members</h2>
-    </div>
-  </li>  
+  <h2>List of members</h2>
 </ul>
 
 <table>
-  <thead>
-    <tr>
-     <th>Gravatar</th>
-      <th>Name</th>
-      <th>Verified</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-
-
-
-
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= image_tag user.users_gravatar.thumb.url %></td>
-      <td><%= link_to user.name, user %></td>
+ <tbody>
+  <% @users.each do |user| %>
+  <tr>
+    <td>
+      <div class="ribbon-box">
+        <div class="ribbon-wrapper">
+          <%= image_tag user.users_gravatar.thumb.url %>
+          <div class="ribbon"><%= user.role %></div>
+        </div>
+      </div>
+    </td>
+    <td><%= link_to user.name, user %>
+      <br>
+      <%= user.try(:bio).truncate_words(10) %></td>
       <td><%= user.verified %></td>
-      <td><%= user.role %></td>
       <% if can? :edit, user %>
-        <td><%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tr>
     <% end %>
@@ -35,4 +27,5 @@
 </table>
 
 <br>
+
 

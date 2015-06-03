@@ -2,7 +2,6 @@
 <% if @offer.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
-
   <ul>
     <% @offer.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -11,27 +10,37 @@
 </div>
 <% end %>
 
-<h1> You are answering <%= @request.user.name %>'s request:</h1>
-<%= @request.message %><br>
-<br>
-
-<div class="field">
-  <%= f.label :message %><br>
-  <%= f.text_field :message %>
+<div class="comment">
+  <div class="comment-content">
+    <p>"<%= link_to @request.message, @request %>"</p>
+    <p class="comment-detail">
+      <div class="stats">
+        <ul>
+          <li><span>From</span><%= time_tag @request.start_date %></li>
+          <li><span>To</span><%= time_tag @request.end_date %></li>
+          <li><span>N. people</span><%= @request.n_of_people %></li>
+          <li><span>Fulfilled?</span><%= @request.accepted %></li>
+        </ul>
+      </div>
+    </p>
+  </div>
 </div>
 
 
 <div class="field">
-  <nav class="inline">
+  <%= f.label :message, "Your offer is:" %><br>
+  <%= f.text_area :message %>
+</div>
+
+
+<div class="stats">
     <ul>
-      <li><%= f.label :offered, "Yes, I'm offering my couch" %></li>
-      <li><%= f.radio_button :offered, true %></li>
-      <li><%= f.label :offered, "No, I'm not offering my couch" %></li>
-      <li><%= f.radio_button :offered, false  %></li>
+      <li> Yes, I'm offering my couch <%= f.radio_button :offered, true %></li>
+      <li> No, I'm not offering my couch <%= f.radio_button :offered, false  %></li>
     </ul>
-  </nav>
 </div>
-<div class="actions">
+
+<div class="actions-center">
   <%= f.submit %>
 </div>
 <% end %>

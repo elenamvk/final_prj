@@ -1,9 +1,5 @@
 <br>
 <br>
-
-
-
-
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-icon bullet-icon-1">
@@ -14,31 +10,18 @@
     <h2> <%= @request.user.name %> is looking for a couch: </h2>
 
       <p>
-        <strong>Message:</strong>
         <%= @request.try("message") %>
       </p>
 
-      <p>
-        <strong>Start date:</strong>
-        <%= time_tag @request.start_date %>
-      </p>
 
-      <p>
-        <strong>End date:</strong>
-        <%= time_tag @request.end_date %>
-      </p>
-
-      <p>
-        <strong>N of people:</strong>
-        <%= @request.n_of_people %>
-      </p>
-
-      <p>
-        <strong>Status:</strong>
-        <%= @request.accepted %>
-      </p>
-
-
+      <div class="stats">
+        <ul>
+          <li><span>From</span><%= time_tag @request.start_date %></li>
+          <li><span>To</span><%= time_tag @request.end_date %></li>
+          <li><span>N. people</span><%= @request.n_of_people %></li>
+          <li><span>Fulfilled?</span><%= @request.accepted %></li>
+        </ul>
+      </div>
 
       <p>
         <h2>Offers:</h2>
@@ -50,7 +33,7 @@
               <img src="{#@user.users_gravatar.thumb.url}" alt="">
             </div>
             <div class="bullet-content">
-              <h2><%= offer.user.name %><%= link_to ', Accept?', accept_request_offer_path(@request, offer), method: :put if can? :create, Request %></h2>
+              <h2><%= offer.user.name %><%= link_to ', Accept?', accept_request_offer_path(@request, offer), method: :put if can? :create, Request %> </h2>
               <p><%= offer.message %></p>
               <% if can? :create, Request %>
               <%end%>

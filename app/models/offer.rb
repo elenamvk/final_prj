@@ -6,6 +6,7 @@ class Offer < ActiveRecord::Base
 
   after_save :accept_request
 
+  validates :message, presence: true
   validates_inclusion_of :offered, :in => [true, false]
 
   def accept_request

@@ -12,28 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Username:" %><br>
     <%= f.text_field :name %>
   </div>
   
   <div class="field">
-    <%= f.label :bio %><br>
-    <%= f.text_field :bio %>
+    <%= f.label :bio, "About:" %><br>
+    <%= f.text_area :bio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :users_gravatar, "Icon:" %><br>
+    <%= f.file_field :users_gravatar %>
   </div>
   
-
   <% if can? :manage, :all %>
-  <div class="field">
-    <%= f.label :verified %><br>
-    <%= f.check_box :verified %>
+
+  <div class="field" id="date-inline">
+    <%= f.label :role, "Role:" %><br>
+    <%= f.select :role, ["band", "host", "admin"] %>
+  </div>
+
+  <div class="stats" id="date-inline">
+      <ul>
+        <li> Yes, user is verified <%= f.radio_button :verified, true %></li>
+        <li> No, user is not verified <%= f.radio_button :verified, false  %></li>
+      </ul>
   </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_field :role %>
-  </div>
-  <div class="actions">
+  <div class="actions-center">
     <%= f.submit %>
   </div>
 <% end %>

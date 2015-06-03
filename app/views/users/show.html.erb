@@ -1,58 +1,35 @@
-<ul class="bullets">
-  <li class="bullet">
-    <div class="bullet-icon bullet-icon-1">
-      <%= image_tag @user.users_gravatar.thumb.url %>
+
+<br>
+<div class="cards">
+  <div class="card">
+    <div class="card-image">
+      <%= image_tag @user.try(:users_gravatar) %>
     </div>
-    <div class="bullet-content">
-
-      <h2> <%= @user.name %> </h2>
-
-      <p>
-        <strong>Bio:</strong>
-        <%= @user.bio %>
-      </p>
-
-      <p>
-        <strong>Verified:</strong>
-        <%= @user.verified %>
-      </p>
-
-      <p>
-        <strong>Role:</strong>
-        <%= @user.role %>
-      </p>
-
-<!--       <p>
-        <strong>Offers:</strong>
-        <%# @request.offers.each do |offer| %>
-        <tr>
-          <td><%#= offer.message %></td>
-          <td><%#= offer.user_id %></td>
-          <td><%#= offer.request_id %></td>
-          <td><%#= offer.accept %></td>
-          <td><%#= link_to 'Show', request_offer_path(@request, offer) %></td>
-          <td><%#= link_to 'Edit', edit_request_offer_path(@request, offer) %></td>
-          <td><%#= link_to 'new offer', new_request_offer_path(@request, offer) %></td>
-          <td><%#= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <%# end %>
-      </p> -->
-    </p>
+    <div class="card-header">
+    <br>
+    <ul class="bullets">
+      <h2><%= @user.name %>, <%= @user.role %>
+        <% if can? :edit, @user %>
+          (<%= link_to('Edit Account', edit_user_path(@user)) %> | 
+          <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>)
+        <% end %>
+      </h2> 
+    </ul>
+    </div>
+    <div class="card-copy">
+      <p><%= @user.bio %></p>
+    </div>
+    <%#= @user.verified %>
   </div>
-</li>  
-</ul>
+</div>
 
-<br>
-<br>
-<br>
 <br>
 
 <% if can? :create, Comment %>
+
 <h2>Feedback from previous hosts:</h2>
+
 <%= render @comments %>
-
-<br>
-
 <%= render partial: 'comments/form', locals: { commentable: @user }%>
 
 <% end %>
@@ -60,5 +37,4 @@
 
 <br>
 <br>
-<br>
-<br>
+

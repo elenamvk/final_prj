@@ -1,9 +1,8 @@
-<table>
-  <td class="formcomment">
-    <%= form_for(:comment, url: comments_path(commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id)) do |f| %>
-    <%= f.text_area :comment, placeholder:"what do you think of this song?"%>
-    <br>
-    <p class="formcomment"><%= f.submit " Comment!", :class => 'button'  %></p>
-  </td>
-</table>
+<hr>
+<%= form_for(:comment, url: comments_path(commentable_type: commentable.class.to_s.underscore, commentable_id: commentable.id)) do |f| %>
+<%= f.label :comment, "Contribute with your feedback about hosting this band: "%>
+<%= f.text_area :comment, placeholder:"Be as specific as you like, for the band won't be able to see this feedback."%>
+<div class="actions-center">
+  <%= f.submit " Comment!", :class => 'button'  %>
+</div>
 <% end %>

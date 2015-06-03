@@ -24,7 +24,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
-    @offer = @request.offers(offer_params)
+    @offer = @request.offers.find(params[:id])
   end
 
 

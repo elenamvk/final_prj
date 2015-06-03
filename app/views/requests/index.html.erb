@@ -1,50 +1,39 @@
 <ul class="bullets">
-  <li class="bullet">
-    <div class="bullet-content">
-      <h2>Bands looking for a couch</h2>
-      <% if can? :create, Request %>
-      <div class="button-group">
-        <label>
-          <input type="radio" name="button-group" value="other-item">
-          <span class="button-group-item">
-            <%= link_to 'New Request', new_request_path %>
-          </span>  
-        </label>  
-      </div>
-      <%end%>
-    </div>
-  </li>  
+<h2>Bands looking for a couch:</h2>
+  <% if can? :create, Request %>
+  <div class="button-group">
+    <label>
+      <span class="button-group-item">
+        <%= link_to 'New Request', new_request_path %>
+      </span>  
+    </label>  
+  </div>
+  <%end%>
 </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Message</th>
-      <th>Artist</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>N of people</th>
-      <th>Status</th>
-    </tr>
-  </thead>
+<% @requests.each do |request| %>
+<div class="comment">
+  <div class="comment-image">
+    <div class="ribbon-box">
+      <div class="ribbon-wrapper">
+        <%= image_tag request.user.try(:users_gravatar) %>
+        <div class="ribbon"><%= request.user.role %></div>
+      </div>
+    </div>
+  </div>
+  <div class="comment-content">
+    <h1><%= link_to request.user.try(:name), request.user %> is looking for a couch:</h1>
+    <p>"<%= link_to request.message.truncate_words(15), request %>..."</p>
+    <p class="comment-detail">
+      From <%= time_tag request.start_date %> until <%= time_tag request.end_date %>, for <%= request.n_of_people %> people<!-- , <%= request.accepted %> --> 
+      <br>
+      <% if can? :edit, Request %>
+      <%= link_to 'Edit', edit_request_path(request) %> | <%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<% end %>
 
-  <tbody>
-    <% @requests.each do |request| %>
-    <tr>
-      <td><%= link_to request.message.truncate_words(10), request %></a></td>
-      <td><%= request.user.try(:name) %></td>
-      <td><%= time_tag request.start_date %></td>
-      <td><%= time_tag request.end_date %></td>
-      <td><%= request.n_of_people %></td>
-      <td><%= request.accepted %></td>
-      <% if can? :edit, request %>
-        <td><%= link_to 'Edit', edit_request_path(request) %> | <%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 

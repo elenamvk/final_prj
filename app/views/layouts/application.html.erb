@@ -8,83 +8,53 @@
 </head>
 <body>
   <!-- <div class="wrapper-for-content-outside-of-footer"> -->
-     
+
 
   <header class="navigation" role="banner">
     <div class="navigation-wrapper">
-      <a href="javascript:void(0)" class="logo">
+      <a href="<%= root_path %>" class="logo">
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
       </a>
       <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <% if user_signed_in? %>
       <nav role="navigation">
         <ul id="js-navigation-menu" class="navigation-menu show">
-          <li class="nav-link">        
-            <% if can? :create, Request %>
-            <%= link_to 'Find a couch', new_request_path %>
-            <% end %>
-          </li>
-          <li class="nav-link">
-            <%= link_to 'Host a band', requests_path %>
-          </li>
-          <li class="nav-link">
-            <%= link_to 'All Users', users_path %>
-          </li>
-          <li class="nav-link">
-            <%= link_to 'Hosts', hosts_path %>
-          </li>
-          <li class="nav-link">
-            <%= link_to 'Bands', bands_path if can? :create, Offer %>
-          </li>
-          <% if user_signed_in? %>
-          <li class="nav-link more">
-            <%= link_to "#{current_user.name}", current_user %>
+          <li class="nav-link"><%= link_to 'Find a couch', new_request_path if can? :create, Request %></li>
+          <li class="nav-link"><%= link_to 'Host a band', requests_path %></li>
+          <li class="nav-link"><%= link_to 'Hosts', hosts_path %></li>
+          <li class="nav-link"><%= link_to 'Bands', bands_path %></li>
+          <li class="nav-link more"><%= link_to "#{current_user.name}", current_user %>
             <ul class="submenu">
-              <li>
-                <%= link_to('Edit Account', edit_user_registration_path(@user)) %>
-              </li>
-              <li>
-                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-              </li>
+              <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
             </ul>
-            <% else %>
-            <li class="nav-link more">
-              <%= link_to('Login', new_user_session_path) %>
-            </li>
-            <li class="nav-link more">
-              <%= link_to "Sign up", new_user_registration_path %>
-            </li>
           </li>
-          <% end %>
         </ul>
       </nav>
-<!--       <div class="navigation-tools">
-        <div class="search-bar">
-          <form role="search">
-            <input type="search" placeholder="Enter Search" />
-            <button type="submit">
-              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
-            </button>
-          </form>
-        </div>
-        <a href="javascript:void(0)" class="sign-up">Sign Up</a>
-      </div> -->
-    </div>
-  </header>
+      <% else %>
+      <div class="navigation-tools">
+        <%= link_to 'Login', new_user_session_path, :class => "sign-up" %>
+        <%= link_to 'Sign up', new_user_registration_path, :class=> "sign-up" %>
+        <% end %>
+      </div>
+      </div>
+    </header>
 
 
-  <main>
-    <% if notice %>
+
+    <main>
+      <% if notice %>
       <p id="success"><%= notice %></p>
-    <% end %>
-    <%= yield %>
-  </main>
+      <% end %>
+      <%= yield %>
+    </main>
 
-  <!-- </div> -->
+    <!-- </div> -->
 
-  <footer class="footer-2" role="contentinfo">
-    <div class="footer-logo">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
-    </div>
+    <footer class="footer-2" role="contentinfo">
+      <div class="footer-logo">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
+      </div>
       <ul>
         <li><a href="javascript:void(0)">About</a></li>
         <li><a href="javascript:void(0)">Contact</a></li>
@@ -100,7 +70,7 @@
         <ul class="footer-social">
           <li><a href="javascript:void(0)">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
-            </a></li>
+          </a></li>
           <li><a href="javascript:void(0)">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
           </a></li>
@@ -109,6 +79,6 @@
           </a></li>
         </ul>
       </div>
-  </footer>
-</body>
-</html>
+    </footer>
+  </body>
+  </html>

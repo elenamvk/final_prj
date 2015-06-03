@@ -1,25 +1,33 @@
+<ul class="bullets">
+  <h2>All the hosts:</h2>
+</ul>
+
 <table>
-  <thead>
-    <tr>
-     <th>Gravatar</th>
-     <th>Name</th>
-     <th>Verified</th>
-     <th>Role</th>
-   </tr>
- </thead>
  <tbody>
   <% @users.each do |user| %>
   <% if user.role == "host" %>
   <tr>
-    <td><%= image_tag user.users_gravatar.thumb.url %></td>
-    <td><%= link_to user.name, user %></td>
+    <td>
+    <div class="ribbon-box">
+      <div class="ribbon-wrapper">
+      <%= image_tag user.users_gravatar.thumb.url %>
+      <div class="ribbon"><%= user.role %></div>
+      </div>
+    </div>
+    </td>
+    <td><%= link_to user.name, user %>
+    <br>
+    <%= user.try(:bio).truncate_words(10) %></td>
     <td><%= user.verified %></td>
-    <td><%= user.role %></td>
     <% if can? :edit, user %>
-    <td><%= link_to('Edit Account', edit_user_registration_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
   <% end %>
   <% end %>
 </tbody>
 </table>
+
+<br>
+
+
