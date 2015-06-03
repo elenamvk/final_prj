@@ -44,6 +44,17 @@ header.navigation {
     }
   }
 
+  #logo2 {
+ 
+      max-height: $navigation-height;
+      padding-left: $navigation-padding;
+      padding-right: 2em;
+
+      img {
+        padding: 0.8em 0;
+      }
+    }
+
   // Mobile view
 
   .navigation-menu-button {

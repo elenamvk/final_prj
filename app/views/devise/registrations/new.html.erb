@@ -1,59 +1,65 @@
 <ul class="bullets">
-  <h2>Sign up</h2>
+  <h2>Sign up or 
+
+    <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), :class => "btn btn--facebook" %>
+    <br />
+    <% end -%>
+    <% end -%>
+
+  </h2>
 </ul>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-<% end -%>
+
 
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name, "Username:" %><br>
-    <%= f.text_field :name %>
-  </div>
+<div class="field">
+  <%= f.label :name, "Pick your username:" %><br>
+  <%= f.text_field :name %>
+</div>
 
-  <div class="field">
-    <%= f.label :email, "Email:" %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="field" >
+  <%= f.label :role, "Are you a...?" %><br />
+  <%= f.select :role, ["band", "host"] %>
+</div>
 
-  <div class="field">
-    <%= f.label :password, "Create your password:" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<div class="field">
+  <%= f.label :users_gravatar, "Icon:" %><br>
+  <%= f.file_field :users_gravatar %>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm your password:" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<div class="field">
+  <%= f.label :email, "Email:" %><br />
+  <%= f.email_field :email, autofocus: true %>
+</div>
 
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.select :role, ["band", "host"] %>
-  </div>
 
-   <div class="field">
-     <%= f.label :users_gravatar, "Icon:" %><br>
-     <%= f.file_field :users_gravatar %>
-   </div>
+<div class="field">
+  <%= f.label :password, "Create your password:" %>
+  <% if @minimum_password_length %>
+  <em>(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %><br />
+  <%= f.password_field :password, autocomplete: "off" %>
+</div>
 
-   <div class="field">
-     <%= f.label :bio, "About me:" %><br>
-     <%= f.text_area :bio %>
-   </div>
+<div class="field">
+  <%= f.label :password_confirmation, "Confirm your password:" %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<div class="field">
+ <%= f.label :bio, "About me:" %><br>
+ <%= f.text_area :bio %>
+</div>
+
+<div class="actions-center">
+  <%= f.submit "Sign up" %>
+</div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
 

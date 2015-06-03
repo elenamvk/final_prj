@@ -3,6 +3,7 @@
 <head>
   <title>FinalPrj</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -23,6 +24,7 @@
           <li class="nav-link"><%= link_to 'Host a band', requests_path %></li>
           <li class="nav-link"><%= link_to 'Hosts', hosts_path %></li>
           <li class="nav-link"><%= link_to 'Bands', bands_path %></li>
+          <img src="<%= current_user.try(:users_gravatar).thumb.url %>" alt="Logo Image", id="logo2"> 
           <li class="nav-link more"><%= link_to "#{current_user.name}", current_user %>
             <ul class="submenu">
               <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
