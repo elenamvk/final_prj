@@ -7,7 +7,7 @@
     </div>
     <div class="bullet-content">
 
-    <h2> <%= @request.user.name %> is looking for a couch: </h2>
+      <h2> <%= @request.user.name %> is looking for a couch: </h2>
 
       <p>
         <%= @request.try("message") %>
@@ -38,7 +38,7 @@
               <% if can? :create, Request %>
               <%end%>
               <p>
-                <%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %>
+                <%= link_to 'Edit', edit_request_offer_path(@request, offer) if can? :edit, Offer %> |
                 <%= link_to 'Destroy', request_offer_path(@request, offer), method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, Offer  %>
               </p>
             </div>
@@ -54,34 +54,15 @@
 
 
 
-<div class="button-group">
+<div class="tiny">
   <% if can? :create, Offer %>
-  <label>
-    <input type="radio" name="button-group" value="other-item">
-    <span class="button-group-item">
-      <%= link_to 'Make a new offer', new_request_offer_path(@request) %>
-    </span>
-  </label>
+  <%= link_to 'Make a new offer', new_request_offer_path(@request) , :id => "uhm"%>
   <%end%>
-  <label>
-    <input type="radio" name="button-group" value="other-item">
-    <span class="button-group-item">
-      <%= link_to 'Edit the request', edit_request_path(@request) %>
-    </span>
-  </label>
-  <label>
-    <input type="radio" name="button-group" value="other-item">
-    <span class="button-group-item">
-      <%= link_to 'Back to index', requests_path %>
-    </span>
-  </label>
+  <%= link_to 'Edit the request', edit_request_path(@request) , :id => "uhm"%>
 </div>
 
 <br>
-<br>
-<br>
-<br>
-<br>
+
 
 
 
