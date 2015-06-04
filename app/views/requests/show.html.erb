@@ -3,7 +3,7 @@
 <ul class="bullets">
   <li class="bullet">
     <div class="bullet-icon bullet-icon-1">
-      <% image_tag user.users_gravatar.thumb.url %>
+      <% image_tag @user.try(:users_gravatar) %>
     </div>
     <div class="bullet-content">
 
