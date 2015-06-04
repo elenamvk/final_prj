@@ -10,80 +10,55 @@
   <link rel="ICON" href="favicon.ico" type="image/ico" /> -->
 </head>
 <body>
-  <!-- <div class="wrapper-for-content-outside-of-footer"> -->
-
-  <header class="navigation" role="banner">
-    <div class="navigation-wrapper">
-      <a href="<%= root_path %>" class="logo">
-        <%= image_tag "tourcouchscritta.gif" %>
-      </a>
-      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
-      <% if user_signed_in? %>
-      <nav role="navigation">
-        <ul id="js-navigation-menu" class="navigation-menu show">
-          <li class="nav-link"><%= link_to 'Find a couch', new_request_path if can? :create, Request %></li>
-          <li class="nav-link"><%= link_to 'Host a band', requests_path %></li>
-          <li class="nav-link"><%= link_to 'Hosts', hosts_path %></li>
-          <li class="nav-link"><%= link_to 'Bands', bands_path %></li>
-          <li class="nav-link more"><%= link_to "#{current_user.name}", current_user, :class =>"nav-link-more" %>
-            <ul class="submenu">
-              <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
-              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+  <div class="wrapper">
+    <header class="navigation" role="banner">
+      <div class="navigation-wrapper">
+        <a href="<%= root_path %>" class="logo">
+          <%= image_tag "tourcouchscritta.gif" %>
+        </a>
+        <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+        <% if user_signed_in? %>
+          <nav role="navigation">
+            <ul id="js-navigation-menu" class="navigation-menu show">
+              <li class="nav-link"><%= link_to 'Find a couch', new_request_path if can? :create, Request %></li>
+              <li class="nav-link"><%= link_to 'Host a band', requests_path %></li>
+              <li class="nav-link"><%= link_to 'Hosts', hosts_path %></li>
+              <li class="nav-link"><%= link_to 'Bands', bands_path %></li>
+              <li class="nav-link more"><%= link_to "#{current_user.name}", current_user, :class =>"nav-link-more" %>
+                <ul class="submenu">
+                  <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
+                  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </nav>
-      <% else %>
-      <div class="navigation-tools">
-        <li><%= link_to 'Login', new_user_session_path, :class => "sign-up" %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path, :class=> "sign-up" %></li>
+          </nav>
+        <% else %>
+          <div class="navigation-tools">
+            <ul>
+              <li><%= link_to 'Login', new_user_session_path, :class => "sign-up" %></li>
+              <li><%= link_to 'Sign up', new_user_registration_path, :class=> "sign-up" %></li>
+            </ul>
+          </div>
         <% end %>
       </div>
-    </div>
-  </header> 
+    </header> 
 
-  <main>
-    <% if notice %>
-    <p id="success"><%= notice %></p>
-    <% end %> 
+    <main>
+      <% if notice %>
+        <p id="success"><%= notice %></p>
+      <% end %> 
 
+      <%= yield %>
+    </main>
 
-
-    
-
-    <%= yield %>
-    <br>
-    <br>
-    <br>
-    <br>
-  </main>
-
-  <!-- </div> -->
+    <div class="push"></div>
+  </div>
 
   <footer class="footer-2" role="contentinfo">
-    <a href="<%= root_path %>" class="footer-logo">
-      <%= image_tag "tourcouchscritta.gif" %>
-    </a>
-    <ul>
-      <li> ALL photographs belong to <a href="http://www.framedsound.com">Valentine Zuczek</a>, concert photographer extraordinaire </li>
-    </ul>
-
     <div class="footer-secondary-links">
       <ul>
-        <li><a href="https://github.com/elenamvk">A WDI London 12 Final Project Production</a></li>
+        <li> ALL photographs belong to <a href="http://www.framedsound.com">Valentine Zuczek</a>, concert photographer extraordinaire </li>
       </ul>
-
-<!--       <ul class="footer-social">
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
-        </a></li>
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
-        </a></li>
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
-        </a></li>
-      </ul> -->
     </div>
   </footer>
 
