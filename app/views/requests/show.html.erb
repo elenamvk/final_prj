@@ -30,7 +30,6 @@
         <ul class="bullets">
           <li class="bullet">
             <div class="bullet-icon bullet-icon-1">
-              <% image_tag user.users_gravatar.thumb.url %>
             </div>
             <div class="bullet-content">
               <h2><%= offer.user.name %><%= link_to ', Accept?', accept_request_offer_path(@request, offer), method: :put if can? :create, Request %> </h2>
