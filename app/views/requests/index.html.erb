@@ -1,9 +1,9 @@
 <ul class="bullets">
-<h2>Bands looking for a couch:</h2>
+  <h2>Bands looking for a couch:</h2>
 
-<% if can? :create, Request %>
-<%= link_to 'New Request', new_request_path, :id => "uhm" %>
-<%end%>
+  <% if can? :create, Request %>
+  <%= link_to 'New Request', new_request_path, :id => "uhm" %>
+  <%end%>
 
 </ul>
 
@@ -12,9 +12,9 @@
   <div class="comment-image">
     <div class="ribbon-box">
       <div class="ribbon-wrapper">
-        <%= image_tag request.user.try(:users_gravatar) %>
         <div class="ribbon"><%= request.user.role %></div>
       </div>
+      <%= image_tag request.user.try(:users_gravatar) %>
     </div>
   </div>
   <div class="comment-content">
