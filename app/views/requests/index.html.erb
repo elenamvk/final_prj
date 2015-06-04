@@ -1,14 +1,10 @@
 <ul class="bullets">
 <h2>Bands looking for a couch:</h2>
-  <% if can? :create, Request %>
-  <div class="button-group">
-    <label>
-      <span class="button-group-item">
-        <%= link_to 'New Request', new_request_path %>
-      </span>  
-    </label>  
-  </div>
-  <%end%>
+
+<% if can? :create, Request %>
+<%= link_to 'New Request', new_request_path, :id => "uhm" %>
+<%end%>
+
 </ul>
 
 <% @requests.each do |request| %>
@@ -34,6 +30,9 @@
   </div>
 </div>
 <% end %>
+
+
+
 
 
 

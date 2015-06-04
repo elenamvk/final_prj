@@ -16,20 +16,21 @@
 @import "ribbon_role";
 @import "users_gallery";
 @import "facebook";
+@import "sign_up";
 
 
 
 
 body {
-   max-width: 100%;
-   margin: auto;
-   font-family: $helvetica;
+ max-width: 100%;
+ margin: auto;
+ font-family: $helvetica;
 }
 
 main {
-   max-width: 800px;
-   height: relative;
-   margin: auto;
+ max-width: 800px;
+ height: relative;
+ margin: auto;
 }
 
 h2 {
@@ -39,3 +40,32 @@ h2 {
 div .button-group {
   text-align: center;
 }
+
+.nav-link-more {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 30px;
+}
+
+.hplogo {
+  margin:50px 5px ;
+  float: left; 
+  width: 400px;
+}
+
+.float-right {
+  margin:50px 0 ;
+  float: right;
+  width: 300px;
+}
+
+.clear {
+  clear: both;
+}
+
+#uhm {
+  @include button;
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+}
+

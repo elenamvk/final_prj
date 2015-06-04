@@ -1,10 +1,37 @@
-<div id="js-parallax-window" class="parallax-window">
-  <div class="parallax-static-content">
-    <b>Parallax Window</b>
-  </div>
-  <div id="js-parallax-background" class="parallax-background"></div>
+<%= image_tag "tourcouch.gif", :class=>"hplogo" %>
+
+
+<% if not current_user %>
+
+
+<div class="float-right">
+  <h1 class="nav-link-more">If you've got a guitar,  we've got a couch</h1>
+  <h2>(plus decent water pressure, wifi and maybe cookies.)</h2>
+  <button id="facebook" onclick="location.href='/users/auth/facebook'">Sign in with Facebook</button> 
+
+<em>TourCouch is the network for bands on tour that want to stay with locals and for discreet locals with a couch to spare.</em>
+
+<br>
+<br>
+
+<b>Safe for bands:</b> all the new users are verfied before getting the clearance to ask for couches or offering theirs.
+<br>
+<b>Safe for couch hosts:</b> plenty of feedback about the band you would like to host is available.
 </div>
 
+<%else%>
 
+<div class="float-right">
+  <h1 class="nav-link-more">Welcome back <%= current_user.name %>!</h1>
 
+<% if can? :create, Request %>
+  <%= link_to "check your pending requests", requests_path, :id => "uhm" %>
+<%end%>
+<% if can? :create, Offer %>
+  <%= link_to "check new requests posted by bands", requests_path, :id => "uhm" %>
+<%end%>
+<%= link_to 'Edit Account', edit_user_registration_path(@user), :id => "uhm"%>
+</div>
+
+<%end%>
 

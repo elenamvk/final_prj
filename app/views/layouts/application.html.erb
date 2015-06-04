@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FinalPrj</title>
+  <title>TourCouch</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- <link rel="SHORTCUT ICON" href="favicon.ico" type="image/x-icon" />
+  <link rel="ICON" href="favicon.ico" type="image/ico" /> -->
 </head>
 <body>
   <!-- <div class="wrapper-for-content-outside-of-footer"> -->
 
-
   <header class="navigation" role="banner">
     <div class="navigation-wrapper">
       <a href="<%= root_path %>" class="logo">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
+        <%= image_tag "tourcouchscritta.gif" %>
       </a>
       <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
       <% if user_signed_in? %>
@@ -24,8 +25,8 @@
           <li class="nav-link"><%= link_to 'Host a band', requests_path %></li>
           <li class="nav-link"><%= link_to 'Hosts', hosts_path %></li>
           <li class="nav-link"><%= link_to 'Bands', bands_path %></li>
-          <img src="<%= current_user.try(:users_gravatar).thumb.url %>" alt="Logo Image", id="logo2"> 
-          <li class="nav-link more"><%= link_to "#{current_user.name}", current_user %>
+          <%= image_tag current_user.try(:users_gravatar).thumb.url, :id=>"logo2" %> 
+          <li class="nav-link more"><%= link_to "#{current_user.name}", current_user, :class =>"nav-link-more" %>
             <ul class="submenu">
               <li><%= link_to('Edit Account', edit_user_registration_path(@user)) %></li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
@@ -35,52 +36,53 @@
       </nav>
       <% else %>
       <div class="navigation-tools">
-        <%= link_to 'Login', new_user_session_path, :class => "sign-up" %>
-        <%= link_to 'Sign up', new_user_registration_path, :class=> "sign-up" %>
+        <li><%= link_to 'Login', new_user_session_path, :class => "sign-up" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, :class=> "sign-up" %></li>
         <% end %>
       </div>
-      </div>
-    </header>
+    </div>
+  </header> 
+
+  <main>
+    <% if notice %>
+    <p id="success"><%= notice %></p>
+    <% end %> 
 
 
 
-    <main>
-      <% if notice %>
-      <p id="success"><%= notice %></p>
-      <% end %>
-      <%= yield %>
-    </main>
+    
 
-    <!-- </div> -->
+    <%= yield %>
+  </main>
 
-    <footer class="footer-2" role="contentinfo">
-      <div class="footer-logo">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
-      </div>
+  <!-- </div> -->
+
+  <footer class="footer-2" role="contentinfo">
+    <a href="<%= root_path %>" class="footer-logo">
+      <%= image_tag "tourcouchscritta.gif" %>
+    </a>
+    <ul>
+      <li> ALL photographs belong to <a href="http://www.framedsound.com">Valentine Zuczek</a>, concert photographer extraordinaire </li>
+    </ul>
+
+    <div class="footer-secondary-links">
       <ul>
-        <li><a href="javascript:void(0)">About</a></li>
-        <li><a href="javascript:void(0)">Contact</a></li>
-        <li><a href="javascript:void(0)">Products</a></li>
+        <li><a href="https://github.com/elenamvk">A WDI London 12 Final Project Production</a></li>
       </ul>
 
-      <div class="footer-secondary-links">
-        <ul>
-          <li><a href="javascript:void(0)">Terms and Conditions</a></li>
-          <li><a href="javascript:void(0)">Privacy Policy</a></li>
-        </ul>
+<!--       <ul class="footer-social">
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+        </a></li>
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
+        </a></li>
+        <li><a href="javascript:void(0)">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+        </a></li>
+      </ul> -->
+    </div>
+  </footer>
 
-        <ul class="footer-social">
-          <li><a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
-          </a></li>
-          <li><a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
-          </a></li>
-          <li><a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
-          </a></li>
-        </ul>
-      </div>
-    </footer>
-  </body>
-  </html>
+</body>
+</html>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  
   root"pages#home"
+
   resources :users, only: [:index, :show, :edit, :update]
   resources :requests do 
     resources :offers do
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :destroy]
 
-  get '/home' => 'pages#home'
+
   get '/about' => 'pages#about'
   get '/contact' => 'pages#contact'
   get '/bands' => 'pages#bands'

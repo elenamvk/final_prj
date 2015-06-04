@@ -37,23 +37,20 @@ header.navigation {
     max-height: $navigation-height;
     padding-left: $navigation-padding;
     padding-right: 2em;
+    margin-top: 0.8em;
 
-    img {
+    img { 
       max-height: $navigation-height;
       padding: 0.8em 0;
     }
   }
 
   #logo2 {
- 
-      max-height: $navigation-height;
-      padding-left: $navigation-padding;
-      padding-right: 2em;
-
-      img {
-        padding: 0.8em 0;
-      }
-    }
+    padding-right: 2px;
+    max-height: 50px;
+    margin-top: 0.8em;
+    border-radius: 50px;
+  }
 
   // Mobile view
 
