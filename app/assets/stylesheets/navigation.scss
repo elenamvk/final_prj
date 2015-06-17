@@ -5,7 +5,7 @@ header.navigation {
   $dark-gray: #333 !default;
   $large-screen: em(860) !default;
   $navigation-padding: 1em;
-  $navigation-background: $dark-gray;
+  $navigation-background: #477dca; //$dark-gray;
   $navigation-color: transparentize(white, 0.3);
   $navigation-color-hover: white;
   $navigation-height: 60px;
@@ -23,21 +23,24 @@ header.navigation {
   border-bottom: 1px solid darken($navigation-background, 10);
   min-height: $navigation-height;
   width: 100%;
+
   z-index: 999;
 
   .navigation-wrapper {
     @include clearfix;
-    @include outer-container;
+    // @include outer-container;
+    max-width: 800px;
     position: relative;
     z-index: 9999;
+    margin: 0 auto;
   }
 
   .logo {
     float: left;
     max-height: $navigation-height;
-    padding-left: $navigation-padding;
-    padding-right: 2em;
-    margin-top: 0.8em;
+    // padding-left: $navigation-padding;
+    // padding-right: 2em;
+    // margin-top: 0.8em;
 
     img { 
       max-height: $navigation-height;
@@ -77,12 +80,12 @@ header.navigation {
   // Nav menu
 
   nav {
-    float: none;
+    float: right;
     min-height: $navigation-height;
     z-index: 9999999;
 
     @include media ($horizontal-bar-mode) {
-      float: left;
+      float: right;
     }
   }
 

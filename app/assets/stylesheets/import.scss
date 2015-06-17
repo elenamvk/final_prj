@@ -43,7 +43,7 @@ div .button-group {
 
 .nav-link-more {
   font-family: 'Architects Daughter', cursive;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .hplogo {
@@ -73,4 +73,19 @@ div .button-group {
   width: 600px;
   margin: auto;
   text-align: center;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+  height: 100px; /* '.push' must be the same height as 'footer' */
 }

@@ -29,15 +29,19 @@
   $action-color: #477DCA !default;
   $medium-screen: em(640) !default;
   $large-screen: em(860) !default;
-  $footer-background: desaturate(darken($action-color, 20%), 30%);
+  // $dark-gray: #333 !default;
+  // $footer-background: desaturate(darken($action-color, 20%), 30%);
+  $footer-background: #f5f5f5;
   $footer-color: white;
-  $footer-link-color: transparentize($footer-color, 0.6);
+  $footer-link-color: $dark-gray;
   $footer-disclaimer-color: transparentize($footer-color, 0.6);
 
+  border-top: 1px solid #f7f7f7;
   background: $footer-background;
   padding: $base-spacing;
   width: 100%;
   display: inline-block;
+  text-align:center;
 
   .footer-logo {
     margin-right: 1em;
@@ -89,7 +93,7 @@
 
   .footer-secondary-links {
     @include media($large-screen) {
-      float: right;
+      text-align: center;
     }
 
     li {
