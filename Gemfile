@@ -14,7 +14,7 @@ gem 'omniauth-facebook', '2.0.1'
 
 gem 'carrierwave', '0.10.0'
 gem 'rmagick'
-gem 'fog', '1.29.0'
+gem 'fog', '1.31.0'
 
 gem 'acts_as_commentable'
 
