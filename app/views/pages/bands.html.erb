@@ -5,20 +5,35 @@
 <table>
  <tbody>
   <% @users.each do |user| %>
-    <% if user.role == "band" %>
+  <% if user.role == "band" %>
     <tr>
       <td>
-      <div class="ribbon-box">
-        <div class="ribbon-wrapper">
-          <div class="ribbon"><%= user.try(:role) %></div>
+        <div class="ribbon-box">
+          <div class="ribbon-wrapper">
+            <div class="ribbon"><%= user.try(:role) %></div>
+          </div>
+          <%= image_tag user.try(:users_gravatar) %>
         </div>
-        <%= image_tag user.try(:users_gravatar) %>
-      </div>
       </td>
-      </tr>
+      <td>
+        <%= link_to user.try(:name), user %>
+        <br>
+        <%= user.try(:bio).truncate_words(10) %>
+      </td>
+      <td><% if user.verified = "true" %></td>
+      <td> verified </td>
+      <td><% else %></td>
+      <td> not verified </td>
+      <td><% end %></td>
+      <% if can? :edit, user %>
+        <td>
+          <%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user,   method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       <% end %>
+    </tr>
     <% end %>
-  </tbody>
+  <% end %>
+</tbody>
 </table>
 
 <br>
