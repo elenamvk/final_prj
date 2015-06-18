@@ -1,5 +1,7 @@
 #Final project: :guitar::sleeping::sparkles: TourCouch app :guitar::sleeping::sparkles:
 
+[![Code Climate](https://codeclimate.com/github/elenamvk/final_prj/badges/gpa.svg)](https://codeclimate.com/github/elenamvk/final_prj)
+
 ##Preparation:
 
   > Pick a problem and solve it using web dev means: google-fu, class-notes, teamworking and your tutors.
