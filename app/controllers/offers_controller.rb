@@ -27,12 +27,10 @@ class OffersController < ApplicationController
     @offer = @request.offers.find(params[:id])
   end
 
-
-
-def accept
-  @offer.offered = true
-  redirect_to @request if @offer.save
-end
+  def accept
+    @request.accepted = true
+    redirect_to @request if @request.save
+  end
 
   # POST /offers
   # POST /offers.json

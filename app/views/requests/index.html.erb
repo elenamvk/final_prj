@@ -1,11 +1,10 @@
-<ul class="bullets">
+<div class="request-heading">
   <h2>Bands looking for a couch:</h2>
 
   <% if can? :create, Request %>
-  <%= link_to 'New Request', new_request_path, :id => "uhm" %>
+    <%= link_to 'New Request', new_request_path, :id => "uhm" %>
   <%end%>
-
-</ul>
+</div>
 
 <% @requests.each do |request| %>
 <div class="comment">
