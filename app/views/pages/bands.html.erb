@@ -17,7 +17,17 @@
       </td>
       <td>
         <%= link_to user.name, user %>
-
+        <br>
+        <%= user.try(:bio).truncate_words(10) %>
+      </td>
+        
+          <td> verified </td>
+        
+      <% if can? :edit, user %>
+        <td>
+          <%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user,   method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   <% end %>
