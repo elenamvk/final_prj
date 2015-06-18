@@ -16,19 +16,11 @@
         </div>
       </td>
       <td>
-        <%= link_to user.try(:name), user %>
+        <%= link_to user.name, user %>
         <br>
         <%= user.try(:bio).truncate_words(10) %>
       </td>
-      <td><% if user.verified = "true" %></td>
-      <td> verified </td>
-      <td><% else %></td>
-      <td> not verified </td>
-      <td><% end %></td>
-      <% if can? :edit, user %>
-        <td>
-          <%= link_to('Edit Account', edit_user_path(user)) %> | <%= link_to 'Destroy', user,   method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+
       <% end %>
     </tr>
     <% end %>
